@@ -1,6 +1,40 @@
+"use client"
+import { FloatingDock } from "@/components/ui/floating-dock";
+import { IconBrandGithub, IconBrandLeetcode, IconBrandLinkedin, IconBrandX, IconExchange, IconHome, IconMail, IconNewSection, IconTerminal2 } from "@tabler/icons-react";
 import Image from "next/image";
 
 export default function Home() {
+  const links = [
+    {
+      title: "Email",
+      icon: (
+        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+    {
+      title: "Github",
+      icon: (
+        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+    {
+      title: "LinkedIn",
+      icon: (
+        <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+    {
+      title: "LeetCode",
+      icon: (
+        <IconBrandLeetcode className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "#",
+    },
+  ];
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -52,7 +86,11 @@ export default function Home() {
         </div>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
+        <FloatingDock
+          // mobileClassName="translate-y-20" // only for demo, remove for production
+          items={links}
+        />
+        {/* <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
           target="_blank"
@@ -96,7 +134,7 @@ export default function Home() {
             height={16}
           />
           Go to nextjs.org →
-        </a>
+        </a> */}
       </footer>
     </div>
   );

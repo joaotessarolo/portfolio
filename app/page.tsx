@@ -1,6 +1,6 @@
 "use client"
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { IconBrandGithub, IconBrandLeetcode, IconBrandLinkedin, IconBrandX, IconExchange, IconHome, IconMail, IconNewSection, IconTerminal2 } from "@tabler/icons-react";
+import { IconBrandGithub, IconBrandLeetcode, IconBrandLinkedin, IconMail } from "@tabler/icons-react";
 import Image from "next/image";
 
 export default function Home() {

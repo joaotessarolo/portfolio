@@ -9,6 +9,7 @@ import { TopNavbar } from "@/components/top-navbar";
 import BottomNavbar from "@/components/bottom-navbar";
 import { ScheduleCallFloat } from "@/components/cal";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 import SunlightBackground from "@/components/custom/sunlight-bg";
 
@@ -89,6 +90,7 @@ export default function RootLayout({
               </div>
               <ScheduleCallFloat />
               <Analytics />
+              <SpeedInsights />
               <Toaster />
             </TooltipProvider>
           </SunlightBackground>

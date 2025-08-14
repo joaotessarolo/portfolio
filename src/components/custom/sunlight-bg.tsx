@@ -6,15 +6,28 @@ import { useTheme } from 'next-themes'
 export default function SunlightBackground({ children }: { children: ReactNode }) {
   const { theme } = useTheme()
   const [shouldRenderLeaves, setShouldRenderLeaves] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Simple performance check
     const isLowPerfDevice = window.navigator.hardwareConcurrency <= 4
     setShouldRenderLeaves(!isLowPerfDevice)
   }, [])
 
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <div>
+        <main className="relative z-10">
+          {children}
+        </main>
+      </div>
+    )
+  }
+
   return (
-    <div className={`${theme == "dark" ? 'dark' : ''}`}>
+    <div className={`${theme === "dark" ? 'dark' : ''}`}>
       <div id="dappled-light">
         <div id="glow"></div>
         <div id="glow-bounce"></div>
@@ -29,7 +42,7 @@ export default function SunlightBackground({ children }: { children: ReactNode }
                         values="0.005 0.003;0.01 0.009;0.008 0.004;0.005 0.003" repeatCount="indefinite" />
                     </feTurbulence>
                     <feDisplacementMap in="SourceGraphic">
-                      <animate attributeName="scale" dur="20s" keyTimes="0;0.25;0.5;0.75;1" values="45;55;75;55;45"
+                      <animate attributeName="scale" dur="20s" keyTimes="0;0.25;0.5;0.75;1" values="45;55;75;45"
                         repeatCount="indefinite" />
                     </feDisplacementMap>
                   </filter>

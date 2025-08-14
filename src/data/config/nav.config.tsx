@@ -1,4 +1,5 @@
 import {
+  BriefcaseIcon,
   DraftingCompass,
   HomeIcon,
   Library,
@@ -19,6 +20,13 @@ export const navItems = [
       <PersonStanding className="h-4 w-4 text-neutral-500 dark:text-white" />
     ),
     name: "About",
+  },
+  {
+    link: "/experience",
+    icon: (
+      <BriefcaseIcon className="h-4 w-4 text-neutral-500 dark:text-white" />
+    ),
+    name: "Experience",
   },
   {
     link: "/projects",

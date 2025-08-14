@@ -1,20 +1,23 @@
 "use client";
 
 import { getCalApi } from "@calcom/embed-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { CalendarDays } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export function ScheduleCallFloat() {
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
+  const calRef = useRef<any>(null);
+
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({ namespace: "joao-victor-tessarolo-z8jhc2" });
+      const cal = await getCalApi({ namespace: "joaotessarolo" });
+      calRef.current = cal;
 
-      // Força a reinicialização do UI quando o tema mudar
+      const currentTheme = (resolvedTheme || theme || "light") as "dark" | "light";
       cal("ui", {
-        theme: theme === "dark" ? "dark" : "light",
+        theme: currentTheme,
         cssVarsPerTheme: {
           dark: { "--brand-color": "#000000" },
           light: { "--brand-color": "#ffffff" },
@@ -22,34 +25,28 @@ export function ScheduleCallFloat() {
         hideEventTypeDetails: false,
         layout: "month_view",
       });
-
-      // Adiciona listener para mudanças de tema
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleThemeChange = (e: MediaQueryListEvent) => {
-        const newTheme = e.matches ? "dark" : "light";
-        cal("ui", {
-          theme: newTheme,
-          cssVarsPerTheme: {
-            dark: { "--brand-color": "#000000" },
-            light: { "--brand-color": "#ffffff" },
-          },
-          hideEventTypeDetails: false,
-          layout: "month_view",
-        });
-      };
-
-      mediaQuery.addEventListener('change', handleThemeChange);
-
-      return () => {
-        mediaQuery.removeEventListener('change', handleThemeChange);
-      };
     })();
-  }, [theme]);
+  }, [resolvedTheme, theme]);
+
+  useEffect(() => {
+    if (calRef.current) {
+      const currentTheme = (resolvedTheme || theme || "light") as "dark" | "light";
+      calRef.current("ui", {
+        theme: currentTheme,
+        cssVarsPerTheme: {
+          dark: { "--brand-color": "#000000" },
+          light: { "--brand-color": "#ffffff" },
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    }
+  }, [theme, resolvedTheme, calRef]);
+
   return (
     <Button
-      // variant={"outline"}
-      data-cal-namespace="joao-victor-tessarolo-z8jhc2"
-      data-cal-link="joao-victor-tessarolo-z8jhc2"
+      data-cal-namespace="joaotessarolo"
+      data-cal-link="joaotessarolo"
       data-cal-config='{"layout":"month_view"}'
       className="group/cal fixed z-50 md:bottom-5 bottom-20 right-5 w-12 h-12 rounded-full hover:px-4 hover:w-auto p-2 duration-300 transition-all ease-out dark:border-white/[0.2] dark:bg-transparent bg-background backdrop-blur-lg shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
     >

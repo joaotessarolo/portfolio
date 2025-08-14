@@ -14,7 +14,7 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default function About() {
   return (
-    <main className="flex flex-col space-y-10 my-20">
+    <main className="flex flex-col space-y-10">
       <section id="career">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">Career</h2>
@@ -51,7 +51,7 @@ export default function About() {
           </div>
         </div>
       </section>
-      <section id="education">
+      {/* <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">Education</h2>
@@ -100,7 +100,7 @@ export default function About() {
             </ul>
           </BlurFade>
         </div>
-      </section>
+      </section> */}
       {/* <section id="others">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
@@ -125,16 +125,7 @@ export default function About() {
           ))}
         </div>
       </section> */}
-      <section id="connect">
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">Hook with me</h2>
-        </BlurFade>
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            {DATA.connect}
-          </Markdown>
-        </BlurFade>
-      </section>
+
     </main>
   );
 }

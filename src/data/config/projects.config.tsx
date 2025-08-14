@@ -24,7 +24,7 @@ export const PROJECTS = [
         icon: <Icons.github className="size-3" />,
       },
     ],
-    image: "https://i.imgur.com/ffeIgzW.png",
+    image: "/portfolio.png",
     video: "",
   },
 ];

@@ -94,7 +94,6 @@ export default function About() {
                     location={work.location}
                     dates={work.dates}
                     image={work.image}
-                    links={work.links}
                   />
                 </BlurFade>
               ))}

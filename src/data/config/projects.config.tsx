@@ -6,6 +6,8 @@ export const PROJECTS = [
     href: "https://joaotessarolo.com",
     dates: "",
     featured: true,
+    active: false,
+    archived: false,
     description:
       "My personal portfolio website.",
     technologies: [
